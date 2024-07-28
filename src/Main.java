@@ -81,7 +81,7 @@ public class Main {
             } else if (objective == 2) {
                 controller.bookAppoinment();
             } else if (objective == 3) {
-                System.out.println("View a Selected doctor's bookings");
+                controller.viewDoctorBooking();
             } else if (objective == 4) {
                controller.registerPatient();
             } else {

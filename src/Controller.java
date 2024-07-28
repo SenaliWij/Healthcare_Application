@@ -97,6 +97,15 @@ public class Controller {
             System.out.println("Enter correct details");
         }
     }
+    public void viewDoctorBooking(){
+        int i=1;
+        System.out.println("Bookings" );
+        Doctor doc=getDoctor();
+        for(Date date : doc.docAvailability){
+            System.out.println("\nDoctor " +i+ "\nName: "+doc.getName()+ "\nSpecializationz: "+ doc.getSpecialization()+"\nDate Available: "+date );
+            i++;
+        }
+    }
     public Doctor getDoctor(){
         Scanner sc=new Scanner(System.in);
         System.out.print("Enter doctor ID: ");
@@ -112,6 +121,24 @@ public class Controller {
             System.out.println("Dcotor not found");
         }
         return selectedDoc;
+    }
+
+    public Patient getPatient(){
+        Scanner sc=new Scanner(System.in);
+        System.out.print("Enter patient ID: ");
+        String patientID=sc.next();
+
+        Patient selectedPat=null;
+        for(Patient pat: patientList){
+            if(pat.getPatientID().equalsIgnoreCase(patientID)){
+                selectedPat=pat;
+            }
+        }
+        if(selectedPat==null){
+            System.out.println("Patient not found");
+            return null;
+        }
+        return selectedPat;
     }
     private boolean checkAvailability(Doctor doc,Date bookedDate){
         for(Date day:doc.docAvailability) {
@@ -135,22 +162,5 @@ public class Controller {
             }
         }
         return "17 : 00";
-    }
-    public Patient getPatient(){
-        Scanner sc=new Scanner(System.in);
-        System.out.print("Enter patient ID: ");
-        String patientID=sc.next();
-
-        Patient selectedPat=null;
-        for(Patient pat: patientList){
-            if(pat.getPatientID().equalsIgnoreCase(patientID)){
-                selectedPat=pat;
-            }
-        }
-        if(selectedPat==null){
-            System.out.println("Patient not found");
-            return null;
-        }
-        return selectedPat;
     }
 }
